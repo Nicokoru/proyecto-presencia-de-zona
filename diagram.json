@@ -1,0 +1,30 @@
+{
+  "version": 1,
+  "author": "Grupo D - Presencia de zona",
+  "editor": "wokwi",
+  "parts": [
+    { "type": "board-esp32-devkit-c-v4", "id": "esp", "top": 0, "left": 0, "attrs": {} },
+    { "type": "wokwi-pir-motion-sensor", "id": "pir1", "top": -110, "left": -260, "attrs": { "delayTime": "3" } },
+    { "type": "wokwi-slide-switch", "id": "reed1", "top": 230, "left": -250, "attrs": {} },
+    { "type": "wokwi-resistor", "id": "r1", "top": 60, "left": -170, "attrs": { "value": "220" } },
+    { "type": "wokwi-led", "id": "ledPir", "top": 20, "left": -250, "attrs": { "color": "red", "label": "PIR" } },
+    { "type": "wokwi-resistor", "id": "r2", "top": 140, "left": -170, "attrs": { "value": "220" } },
+    { "type": "wokwi-led", "id": "ledReed", "top": 100, "left": -250, "attrs": { "color": "blue", "label": "REED" } }
+  ],
+  "connections": [
+    [ "esp:TX", "$serialMonitor:RX", "", [] ],
+    [ "esp:RX", "$serialMonitor:TX", "", [] ],
+    [ "pir1:VCC", "esp:5V", "red", [] ],
+    [ "pir1:GND", "esp:GND.1", "black", [] ],
+    [ "pir1:OUT", "esp:27", "green", [] ],
+    [ "reed1:2", "esp:26", "orange", [] ],
+    [ "reed1:1", "esp:GND.1", "black", [] ],
+    [ "esp:25", "r1:2", "green", [] ],
+    [ "r1:1", "ledPir:A", "green", [] ],
+    [ "ledPir:C", "esp:GND.1", "black", [] ],
+    [ "esp:33", "r2:2", "blue", [] ],
+    [ "r2:1", "ledReed:A", "blue", [] ],
+    [ "ledReed:C", "esp:GND.1", "black", [] ]
+  ],
+  "dependencies": {}
+}
